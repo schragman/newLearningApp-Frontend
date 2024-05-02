@@ -13,6 +13,11 @@
   }
 }
 
+
+#main-content {
+  min-height: 80vh;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -26,6 +31,20 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.caret-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+.collapsed .caret-icon {
+  transform: rotate(45deg);
 }
 
 @keyframes App-logo-spin {
