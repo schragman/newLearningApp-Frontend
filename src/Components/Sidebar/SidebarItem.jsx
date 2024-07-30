@@ -1,27 +1,40 @@
 import "./Sidebar.css"
 import {FaCaretDown, FaCaretRight} from "react-icons/fa";
+import {useState} from "react";
 
-function getCaret(open, content) {
-  if (content) {
-    if (open) {
-      return <FaCaretDown/>;
-    } else {
-      return <FaCaretRight/>
-    }
-  } else {
-    return ''
+export default function SidebarItem({name, type, open, content}) {
+
+  const [isOpen , setIsOpen] = useState(open);
+
+  function handleSelect(marked) {
+    console.log(name + " is selected!")
+    console.log("navItem.open ist vorher " + marked)
+    marked = !marked;
+    console.log("navItem.open ist jetzt " + marked)
+    setIsOpen(marked);
   }
-}
-export default function SidebarItem({onSelect, name, type, open, content}) {
 
+  function getCaret(caretMarked, content) {
+    console.log("getCaret wird wirklich durchlaufen")
+    if (content) {
+      if (caretMarked) {
+        return <FaCaretDown/>;
+      } else {
+        return <FaCaretRight/>
+      }
+    } else {
+      return ''
+    }
+  }
   return (
     <li>
-      <button onClick={onSelect}>
-        {getCaret(open, content)} {name}
+      <button onClick={() => handleSelect(isOpen)}>
+        {console.log("getCaret wird durchlaufen! Name= " + name + ", open = " + isOpen)}
+        {getCaret(isOpen, content)} {name}
       </button>
       <ul >
       {
-        (content && open) ?
+        (content && isOpen) ?
           content.map((navSubItem) =>
             <SidebarItem key={navSubItem.name} {...navSubItem} />)
         :
