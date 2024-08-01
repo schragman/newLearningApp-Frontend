@@ -6,16 +6,11 @@ export default function SidebarItem({name, type, open, content}) {
 
   const [isOpen , setIsOpen] = useState(open);
 
-  function handleSelect(marked) {
-    console.log(name + " is selected!")
-    console.log("navItem.open ist vorher " + marked)
-    marked = !marked;
-    console.log("navItem.open ist jetzt " + marked)
-    setIsOpen(marked);
+  function handleSelect() {
+    setIsOpen((opened) => !opened);
   }
 
   function getCaret(caretMarked, content) {
-    console.log("getCaret wird wirklich durchlaufen")
     if (content) {
       if (caretMarked) {
         return <FaCaretDown/>;
@@ -28,8 +23,7 @@ export default function SidebarItem({name, type, open, content}) {
   }
   return (
     <li>
-      <button onClick={() => handleSelect(isOpen)}>
-        {console.log("getCaret wird durchlaufen! Name= " + name + ", open = " + isOpen)}
+      <button onClick={() => handleSelect()}>
         {getCaret(isOpen, content)} {name}
       </button>
       <ul >
